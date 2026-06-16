@@ -2,30 +2,46 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
 <meta property="og:title" content="Cumpleaños y Bautizo de Annía">
 <meta property="og:description" content="Fiesta de vaqueros. Estás invitado ✨">
 <meta property="og:image" content="https://vd159817.github.io/c_portafolio/preview.png">
 <meta property="og:url" content="https://vd159817.github.io/c_portafolio/">
 <meta property="og:type" content="website">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Invitación Annía ✨🎂</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght=700;800;900&display=swap');
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+  /* ========== FUENTES CON FALLBACK ROBUSTO ========== */
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap');
+
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+
+  /* ========== EVITAR MODO OSCURO ========== */
+  html, body {
+    background: #1a0a00 !important;
+    color-scheme: light only;
+    -webkit-tap-highlight-color: transparent;
+  }
 
   body {
-    font-family: 'Fredoka One', cursive;
-    background: #1a0a00;
+    font-family: 'Fredoka One', 'Arial Black', 'Impact', cursive !important;
+    font-style: normal !important;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  /* ========== FUERZA TODOS LOS TEXTOS A NO SER CURSIVA ========== */
+  * {
+    font-style: normal !important;
   }
 
   /* ========== PANTALLA 1: SPLASH ========== */
@@ -80,7 +96,8 @@
   }
 
   .splash-text {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(18px, 5vw, 28px);
     color: #FFD700;
     text-align: center;
@@ -96,7 +113,8 @@
   }
 
   .splash-sub {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-size: clamp(13px, 3vw, 16px);
     color: #87CEEB;
     text-align: center;
@@ -105,7 +123,8 @@
   }
 
   #btn-invite {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(18px, 4vw, 24px);
     color: #1a0a00;
     background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FFD700 100%);
@@ -280,7 +299,8 @@
 
   /* Encabezado */
   .label-vaquerita {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 900;
     font-size: clamp(14px, 3.5vw, 18px);
     color: #2980B9;
@@ -291,13 +311,15 @@
   }
 
   .name-emma {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(48px, 13vw, 68px);
     line-height: 1.1;
     color: #FFD700;
-    -webkit-text-stroke: 3px #2471A3;
+    /* En lugar de -webkit-text-stroke, usamos text-shadow que es más compatible */
     text-shadow:
       4px 4px 0 #1A5276,
+      6px 6px 0 #2471A3,
       0 0 30px rgba(255,215,0,0.6);
     letter-spacing: -1px;
     animation: nameWobble 3s ease-in-out infinite;
@@ -310,10 +332,11 @@
     50% { transform: rotate(1deg) scale(1.02); }
   }
 
-.cumple-banner {
+  .cumple-banner {
     background: #C0392B;
     color: #FFD700;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(20px, 5vw, 28px);
     font-weight: 900;
     padding: 6px 30px;
@@ -322,9 +345,8 @@
     margin: 6px 0;
     box-shadow: 3px 3px 0 #8B0000, 0 4px 15px rgba(192,57,43,0.5);
     letter-spacing: 2px;
-    -webkit-text-stroke: 1px #8B0000;
     animation: bannerShake 4s ease-in-out infinite;
-}
+  }
 
   @keyframes bannerShake {
     0%, 90%, 100% { transform: rotate(0deg); }
@@ -335,11 +357,14 @@
   }
 
   .num-cinco {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(80px, 20vw, 110px);
     color: #FFD700;
-    -webkit-text-stroke: 4px #2471A3;
-    text-shadow: 5px 5px 0 #1A5276, 0 0 40px rgba(255,215,0,0.8);
+    text-shadow:
+      5px 5px 0 #1A5276,
+      7px 7px 0 #2471A3,
+      0 0 40px rgba(255,215,0,0.8);
     line-height: 1;
     display: block;
     animation: bounce5 1.5s ease-in-out infinite;
@@ -431,7 +456,8 @@
 
   /* Texto invitación básico */
   .invite-text {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(16px, 4.5vw, 20px);
     color: #C0392B;
     margin-bottom: 6px;
@@ -439,7 +465,8 @@
   }
 
   .day-label {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 900;
     font-size: clamp(13px, 3vw, 16px);
     color: #C0392B;
@@ -451,20 +478,22 @@
   }
 
   .date-num {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(56px, 14vw, 72px);
     color: #FFD700;
-    -webkit-text-stroke: 3px #2471A3;
-    text-shadow: 3px 3px 0 #1A5276;
+    text-shadow:
+      3px 3px 0 #1A5276,
+      5px 5px 0 #2471A3;
     line-height: 1;
     display: inline-block;
   }
 
   .month-label {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(20px, 5vw, 26px);
     color: #1A5276;
-    -webkit-text-stroke: 0.5px #2471A3;
     letter-spacing: 2px;
     display: block;
     margin-top: -4px;
@@ -472,7 +501,8 @@
   }
 
   .venue-label {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 900;
     font-size: clamp(15px, 3.5vw, 18px);
     color: #2471A3;
@@ -480,11 +510,12 @@
   }
 
   .venue-name {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(24px, 6vw, 32px);
     color: #C0392B;
-    -webkit-text-stroke: 1px #8B0000;
-    text-shadow: 2px 2px 0 #8B0000;
+    text-shadow:
+      2px 2px 0 #8B0000;
     display: block;
     line-height: 1.1;
     animation: venuePulse 2s ease-in-out infinite;
@@ -496,7 +527,8 @@
   }
 
   .time-text {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(26px, 6.5vw, 34px);
     color: #1A5276;
     text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
@@ -623,26 +655,27 @@
   
   /* Cita de Toy Story */
   .toystory-quote {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: italic !important;
     font-weight: 800;
     font-size: clamp(13px, 3.2vw, 15px);
     color: #5D6D7E;
     margin: 12px auto;
-    font-style: italic;
     max-width: 85%;
     line-height: 1.3;
   }
   .quote-mark {
     color: #E67E22;
     font-size: 1.2em;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
   }
   .quote-author {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(11px, 2.8vw, 13px);
     color: #2471A3;
     margin-top: 4px;
-    font-style: normal;
     letter-spacing: 0.5px;
   }
 
@@ -677,7 +710,8 @@
   }
   
   .section-label {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(16px, 4.5vw, 19px);
     color: #C0392B;
     margin-bottom: 4px;
@@ -685,7 +719,8 @@
   }
   
   .side-detail {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 800;
     font-size: clamp(12px, 3.2vw, 14px);
     color: #34495E;
@@ -713,7 +748,8 @@
   }
 
   .event-title {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(15px, 4vw, 18px);
     color: #C0392B;
     margin-bottom: 6px;
@@ -723,7 +759,8 @@
   }
 
   .event-date, .event-time {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 800;
     font-size: clamp(11px, 2.8vw, 13px);
     color: #2471A3;
@@ -737,7 +774,8 @@
 
   /* Padrinos / Padres */
   .padrinos-text {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 900;
     font-size: clamp(13px, 3.2vw, 15px);
     color: #8B4513;
@@ -755,7 +793,8 @@
     background: #C0392B;
     color: white;
     font-weight: 800;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-size: clamp(11px, 2.5vw, 13px);
     display: inline-block;
     box-shadow: 2px 2px 0 #8B0000;
@@ -766,7 +805,8 @@
 
   /* Nota de confirmación */
   .confirm-note {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
+    font-style: normal !important;
     font-weight: 800;
     font-size: clamp(12px, 3.2vw, 14px);
     color: #196F3D;
@@ -784,7 +824,8 @@
     position: relative;
     display: inline-block;
     text-decoration: none;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(16px, 4vw, 20px);
     color: #3a2f00;
     background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FFD700 100%);
@@ -823,7 +864,8 @@
   }
 
   .closing-text {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', 'Arial Black', cursive !important;
+    font-style: normal !important;
     font-size: clamp(13px, 3.5vw, 16px);
     color: #8B4513;
     margin-top: 16px;
@@ -849,11 +891,12 @@
 </head>
 <body>
 
+<!-- ===== SPLASH ===== -->
 <div id="splash">
   <div class="splash-stars" id="splashStars"></div>
 
   <img src="5.png" alt="Toy Story" class="splash-logo" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block'">
-  <div id="fallbackLogo" style="display:none; font-family:'Fredoka One',cursive; font-size:36px; color:#FFD700; text-shadow:3px 3px 0 #8B4513; margin-bottom:20px;">TOY STORY</div>
+  <div id="fallbackLogo" style="display:none; font-family:'Fredoka One','Arial Black',cursive !important; font-style:normal !important; font-size:36px; color:#FFD700; text-shadow:3px 3px 0 #8B4513; margin-bottom:20px;">TOY STORY</div>
 
   <div class="splash-text">¡Tienes una misión secreta!</div>
   <div class="splash-sub">Toca el botón para recibir tu invitación 🤫</div>
@@ -863,6 +906,7 @@
   </button>
 </div>
 
+<!-- ===== TRANSICIÓN ===== -->
 <div id="bullseye-transition">
   <div class="transition-cloud c1"></div>
   <div class="transition-cloud c2"></div>
@@ -874,6 +918,7 @@
   <div id="loading-text">Buscando a Woody...</div>
 </div>
 
+<!-- ===== INVITACIÓN ===== -->
 <div id="invitation">
 
   <div class="cloud" style="width:120px;height:35px;top:5%;--dur:25s;--delay2:-5s;"></div>
