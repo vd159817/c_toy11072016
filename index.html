@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación Annia ✨🎂</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght=700;800;900&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -249,8 +249,6 @@
     position: relative;
     overflow: hidden;
   }
-  
-  
 
   .card::before {
     content: '';
@@ -286,14 +284,14 @@
 
   .name-emma {
     font-family: 'Fredoka One', cursive;
-    font-size: clamp(68px, 18vw, 90px);
-    line-height: 1;
+    font-size: clamp(48px, 13vw, 68px);
+    line-height: 1.1;
     color: #FFD700;
-    -webkit-text-stroke: 4px #2471A3;
+    -webkit-text-stroke: 3px #2471A3;
     text-shadow:
       4px 4px 0 #1A5276,
       0 0 30px rgba(255,215,0,0.6);
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     animation: nameWobble 3s ease-in-out infinite;
     display: block;
     margin-bottom: 4px;
@@ -304,11 +302,12 @@
     50% { transform: rotate(1deg) scale(1.02); }
   }
 
-  .cumple-banner {
+.cumple-banner {
     background: #C0392B;
     color: #FFD700;
     font-family: 'Fredoka One', cursive;
     font-size: clamp(20px, 5vw, 28px);
+    font-weight: 900;
     padding: 6px 30px;
     border-radius: 8px;
     display: inline-block;
@@ -317,7 +316,7 @@
     letter-spacing: 2px;
     -webkit-text-stroke: 1px #8B0000;
     animation: bannerShake 4s ease-in-out infinite;
-  }
+}
 
   @keyframes bannerShake {
     0%, 90%, 100% { transform: rotate(0deg); }
@@ -329,7 +328,7 @@
 
   .num-cinco {
     font-family: 'Fredoka One', cursive;
-    font-size: clamp(90px, 22vw, 120px);
+    font-size: clamp(80px, 20vw, 110px);
     color: #FFD700;
     -webkit-text-stroke: 4px #2471A3;
     text-shadow: 5px 5px 0 #1A5276, 0 0 40px rgba(255,215,0,0.8);
@@ -344,7 +343,6 @@
     60% { transform: translateY(-6px) scale(1.03); }
   }
 
-  /* Imágenes personajes */
   .jessie-img {
     width: 150px;
     filter: drop-shadow(0 0 18px rgba(255,215,0,0.9)) drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
@@ -368,7 +366,6 @@
     50% { transform: translateY(-8px) rotate(-1deg); }
   }
 
-  /* Estrellas decorativas (imagen) */
   .stars-deco {
     position: absolute;
     width: 60px;
@@ -384,7 +381,6 @@
     100% { transform: rotate(360deg) scale(1); }
   }
 
-  /* Herrajes (locks) */
   .locks-deco {
     position: absolute;
     width: 45px;
@@ -401,9 +397,9 @@
 
   /* Divisor de cuerda */
   .rope-divider {
-    width: 90%;
-    height: 16px;
-    margin: 14px auto;
+    width: 95%;
+    height: 14px;
+    margin: 16px auto;
     background:
       repeating-linear-gradient(90deg,
         #8B4513 0px, #A0522D 8px,
@@ -419,20 +415,19 @@
     top: 50%;
     transform: translateY(-50%);
     color: #FFD700;
-    font-size: 14px;
+    font-size: 12px;
     text-shadow: 0 0 5px #FF8C00;
   }
   .rope-divider::before { left: -8px; }
   .rope-divider::after  { right: -8px; }
 
-  /* Texto invitación */
+  /* Texto invitación básico */
   .invite-text {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: clamp(16px, 4vw, 20px);
-    color: #2471A3;
-    margin: 8px 0 4px;
-    line-height: 1.3;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(16px, 4.5vw, 20px);
+    color: #C0392B;
+    margin-bottom: 6px;
+    line-height: 1.2;
   }
 
   .day-label {
@@ -500,7 +495,7 @@
     margin-top: 6px;
   }
 
-  /* Chispas / sparkles flotantes sobre la tarjeta */
+  /* Sparkles flotantes */
   .sparkle {
     position: absolute;
     pointer-events: none;
@@ -518,7 +513,7 @@
     100% { transform: rotate(360deg) scale(0.5); opacity: 0; }
   }
 
-  /* Brillo barrido sobre la tarjeta */
+  /* Brillo barrido */
   .card-shine {
     position: absolute;
     inset: 0;
@@ -558,104 +553,137 @@
     .jessie-img  { width: 130px; left: -40px; }
     .bullseye-img { width: 110px; right: -40px; }
   }
+
+  /* ========== PANTALLA 3: TRANSICIÓN ========== */
   #bullseye-transition{
-  position:fixed;
-  inset:0;
-  background:#87CEEB;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  z-index:9999;
-}
-
-#running-bullseye{
-  position:absolute;
-  width:180px;
-  left:-220px;
-  bottom:120px;
-}
-
-#loading-text{
-  position:absolute;
-  bottom:50px;
-  font-size:24px;
-  font-weight:bold;
-  color:white;
-  text-shadow:2px 2px 4px rgba(0,0,0,.4);
-}
-
-#dust-cloud{
-  position:absolute;
-  width:50px;
-  height:50px;
-  background:#E8D3A9;
-  border-radius:50%;
-  opacity:0;
-}
-.transition-cloud{
-  position:absolute;
-  background:white;
-  border-radius:50px;
-  opacity:.9;
-}
-
-.c1{
-  width:180px;
-  height:60px;
-  top:15%;
-  left:5%;
-  animation: cloudFloat 2s ease-in-out infinite;
-}
-
-.c2{
-  width:120px;
-  height:40px;
-  top:30%;
-  left:70%;
-  animation: cloudFloat 5s ease-in-out infinite;
-}
-
-.c3{
-  width:220px;
-  height:70px;
-  top:55%;
-  left:15%;
-  animation: cloudFloat 6s ease-in-out infinite;
-}
-
-.c4{
-  width:140px;
-  height:45px;
-  top:75%;
-  left:65%;
-  animation: cloudFloat 7s ease-in-out infinite;
-}
-
-
-@keyframes cloudFloat {
-
-  0% {
-    transform: translate(0px, 0px);
+    position:fixed;
+    inset:0;
+    background:#87CEEB;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    z-index:9999;
   }
 
-  25% {
-    transform: translate(10px, -8px);
+  #running-bullseye{
+    position:absolute;
+    width:180px;
+    left:-220px;
+    bottom:120px;
   }
 
-  50% {
-    transform: translate(20px, 0px);
+  #loading-text{
+    position:absolute;
+    bottom:50px;
+    font-size:24px;
+    font-weight:bold;
+    color:white;
+    text-shadow:2px 2px 4px rgba(0,0,0,.4);
   }
 
-  75% {
-    transform: translate(10px, 8px);
+  #dust-cloud{
+    position:absolute;
+    width:50px;
+    height:50px;
+    background:#E8D3A9;
+    border-radius:50%;
+    opacity:0;
   }
 
-  100% {
-    transform: translate(0px, 0px);
+  .transition-cloud{
+    position:absolute;
+    background:white;
+    border-radius:50px;
+    opacity:.9;
   }
 
-}
+  .c1{ width:180px; height:60px; top:15%; left:5%; animation: cloudFloat 2s ease-in-out infinite; }
+  .c2{ width:120px; height:40px; top:30%; left:70%; animation: cloudFloat 5s ease-in-out infinite; }
+  .c3{ width:220px; height:70px; top:55%; left:15%; animation: cloudFloat 6s ease-in-out infinite; }
+  .c4{ width:140px; height:45px; top:75%; left:65%; animation: cloudFloat 7s ease-in-out infinite; }
+
+  @keyframes cloudFloat {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(10px, -8px); }
+    50% { transform: translate(20px, 0px); }
+    75% { transform: translate(10px, 8px); }
+    100% { transform: translate(0px, 0px); }
+  }
+
+  /* ========== ESTILOS DE CORRECCIÓN (SUBLIME) ========== */
+  
+  /* Cita de Toy Story */
+  .toystory-quote {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(13px, 3.2vw, 15px);
+    color: #5D6D7E;
+    margin: 12px auto;
+    font-style: italic;
+    max-width: 85%;
+    line-height: 1.3;
+  }
+  .quote-mark {
+    color: #E67E22;
+    font-size: 1.2em;
+    font-family: 'Fredoka One', cursive;
+  }
+  .quote-author {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(11px, 2.8vw, 13px);
+    color: #2471A3;
+    margin-top: 4px;
+    font-style: normal;
+    letter-spacing: 0.5px;
+  }
+
+  /* Bloques de sección con personajes integrados a los lados */
+  .side-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, #ffffff 0%, #fffdf4 100%);
+    border: 3px solid #F39C12;
+    border-radius: 22px;
+    padding: 14px;
+    margin: 16px 0;
+    box-shadow: 4px 4px 0px #C0392B;
+    transition: transform 0.2s;
+  }
+  .side-block:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Ajuste de los personajes para que no rompan la pantalla */
+  .side-char {
+    width: 85px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.25));
+    flex-shrink: 0;
+  }
+  
+  .side-text {
+    flex: 1;
+  }
+  
+  .section-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(16px, 4.5vw, 19px);
+    color: #C0392B;
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
+  }
+  
+  .side-detail {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(12px, 3.2vw, 14px);
+    color: #34495E;
+    line-height: 1.45;
+  }
+
   /* Eventos en dos columnas */
   .events-container {
     display: grid;
@@ -671,118 +699,76 @@
     border-radius: 16px;
     padding: 12px 10px;
     box-shadow: 0 4px 12px rgba(192,57,43,0.2), 3px 3px 0 #FFD700;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .event-title {
     font-family: 'Fredoka One', cursive;
-    font-size: clamp(15px, 4vw, 20px);
+    font-size: clamp(15px, 4vw, 18px);
     color: #C0392B;
     margin-bottom: 6px;
     border-bottom: 2px dashed #FFD700;
     padding-bottom: 4px;
+    text-align: center;
   }
 
-  .event-date, .event-time, .event-place {
+  .event-date, .event-time {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    font-size: clamp(11px, 2.8vw, 14px);
+    font-size: clamp(11px, 2.8vw, 13px);
     color: #2471A3;
     margin: 4px 0;
   }
 
-  .event-place a, .event-place .card-btn {
-    font-size: clamp(10px, 2.5vw, 13px);
-    padding: 6px 10px;
+  .event-place {
+    text-align: center;
+    margin-top: 6px;
   }
 
-  /* Padrinos */
+  /* Padrinos / Padres */
   .padrinos-text {
     font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: clamp(13px, 3.2vw, 16px);
+    font-weight: 900;
+    font-size: clamp(13px, 3.2vw, 15px);
     color: #8B4513;
-    background: rgba(255, 215, 0, 0.2);
+    background: rgba(255, 215, 0, 0.15);
     border: 2px dashed #FFD700;
-    border-radius: 12px;
-    padding: 8px 14px;
-    margin: 10px 0 4px;
-  }
-
-  /* Fila de logos abajo */
-  .logos-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 14px auto 0;
-    width: 100%;
-  }
-
-  .logo-bottom {
-    width: min(70px, 18vw);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-    animation: logoGlow 2s ease-in-out infinite;
-  }
-
-  /* Logo Toy Story (imagen) */
-  .toystory-logo {
-    width: min(160px, 40vw);
-    display: block;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
-    animation: logoGlow 2s ease-in-out infinite;
-  }
-
-  @keyframes logoGlow {
-    0%, 100% { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); }
-    50% { filter: drop-shadow(0 4px 20px rgba(255,215,0,0.8)) drop-shadow(0 0 30px rgba(255,140,0,0.6)); }
-  }
-  .estrella-inside {
-    width: 60px;
-    filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.3));
-    animation: lockFloat 3s ease-in-out infinite;
-    align-self: flex-end;
-    flex-shrink: 0;
-  }
-
-  .personajes-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 10px;
-    width: 100%;
-    overflow: visible;
-  }
-
-  .personajes-row .jessie-img {
-    width: 150px;
-    flex-shrink: 0;
-  }
-
-  .personajes-row .bullseye-img {
-    width: 65px;
-    flex-shrink: 0;
-    align-self: flex-end;
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin: 10px 0;
   }
 
   .card-btn {
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 10px;
     background: #C0392B;
     color: white;
-    font-weight: 700;
+    font-weight: 800;
     font-family: 'Nunito', sans-serif;
     font-size: clamp(11px, 2.5vw, 13px);
     display: inline-block;
-    margin-top: 6px;
     box-shadow: 2px 2px 0 #8B0000;
+    transition: background 0.2s;
+    width: 100%;
   }
+  .card-btn:hover { background: #A93226; }
 
-  .card-btn.secondary {
-    background: #FFD700;
-    color: #3a2f00;
-    box-shadow: 2px 2px 0 #B8860B;
+  /* Nota de confirmación */
+  .confirm-note {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(12px, 3.2vw, 14px);
+    color: #196F3D;
+    background: #E8F8F5;
+    border: 2px dashed #2ECC71;
+    padding: 10px 14px;
+    border-radius: 14px;
+    margin: 15px auto 5px;
+    width: 100%;
+    display: inline-block;
   }
 
   /* Botón confirmar especial */
@@ -806,6 +792,7 @@
     overflow: hidden;
     cursor: pointer;
     letter-spacing: 1px;
+    width: 100%;
   }
 
   .confirm-btn::before {
@@ -824,7 +811,15 @@
 
   @keyframes confirmPulse {
     0%, 100% { transform: scale(1); box-shadow: 0 0 0 3px #8B4513, 0 0 0 6px #FFD700, 0 6px 20px rgba(255,140,0,0.6), inset 0 2px 3px rgba(255,255,255,0.5); }
-    50% { transform: scale(1.05); box-shadow: 0 0 0 3px #8B4513, 0 0 0 6px #FFD700, 0 10px 30px rgba(255,140,0,0.9), inset 0 2px 3px rgba(255,255,255,0.5); }
+    50% { transform: scale(1.03); box-shadow: 0 0 0 3px #8B4513, 0 0 0 6px #FFD700, 0 10px 30px rgba(255,140,0,0.9), inset 0 2px 3px rgba(255,255,255,0.5); }
+  }
+
+  .closing-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: #8B4513;
+    margin-top: 16px;
+    line-height: 1.3;
   }
 
   /* Chispitas al presionar */
@@ -846,11 +841,9 @@
 </head>
 <body>
 
-<!-- ====== PANTALLA 1: SPLASH ====== -->
 <div id="splash">
   <div class="splash-stars" id="splashStars"></div>
 
-  <!-- Toy Story logo como imagen -->
   <img src="5.png" alt="Toy Story" class="splash-logo" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block'">
   <div id="fallbackLogo" style="display:none; font-family:'Fredoka One',cursive; font-size:36px; color:#FFD700; text-shadow:3px 3px 0 #8B4513; margin-bottom:20px;">TOY STORY</div>
 
@@ -862,10 +855,7 @@
   </button>
 </div>
 
-<!-- ====== PANTALLA 3: Transicion ====== -->
-
 <div id="bullseye-transition">
-
   <div class="transition-cloud c1"></div>
   <div class="transition-cloud c2"></div>
   <div class="transition-cloud c3"></div>
@@ -873,13 +863,9 @@
 
   <img src="2.png" alt="Bullseye" id="running-bullseye">
 
-  <div id="loading-text">
-    Buscando a Woody...
-  </div>
-
+  <div id="loading-text">Buscando a Woody...</div>
 </div>
 
-<!-- ====== PANTALLA 2: INVITACIÓN ====== -->
 <div id="invitation">
 
   <div class="cloud" style="width:120px;height:35px;top:5%;--dur:25s;--delay2:-5s;"></div>
@@ -908,20 +894,17 @@
     <div class="sparkle" style="top:10px;right:30px;--sd:2.5s;--sdelay:0s;">
       <svg width="22" height="22" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#FFD700"/></svg>
     </div>
-
     <div class="sparkle" style="top:40px;left:20px;--sd:1.8s;--sdelay:0.5s;">
       <svg width="16" height="16" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#87CEEB"/></svg>
     </div>
-
     <div class="sparkle" style="bottom:80px;right:20px;--sd:2s;--sdelay:1s;">
       <svg width="14" height="14" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#FF6B6B"/></svg>
     </div>
-
     <div class="sparkle" style="bottom:120px;left:25px;--sd:3s;--sdelay:0.3s;">
       <svg width="18" height="18" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#FFD700"/></svg>
     </div>
 
-    <div class="card" style="width:90%; margin:0 auto;">
+    <div class="card" style="width:95%; margin:0 auto;">
       <div class="card-shine"></div>
 
       <svg class="card-corner tl" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
@@ -929,26 +912,44 @@
       <svg class="card-corner bl" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
       <svg class="card-corner br" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
 
-      <div class="label-vaquerita">¡CELEBRACIÓN ESPECIAL!</div>
+      <div class="label-vaquerita">Cumpleaños & Bautizo</div>
 
-      <span class="name-emma"> Annia Lía </span>
+      <span class="name-emma">Annia Lía</span>
 
       <div class="cumple-banner">Cumple</div>
 
       <span class="num-cinco">1</span>
 
-      <div class="invite-text" style="margin: 10px 0 4px;">¡Acompáñanos a celebrar este día tan especial!</div>
+      <div class="toystory-quote">
+        <span class="quote-mark">"</span>
+        ¡Hacia el infinito… y más allá!
+        <span class="quote-mark">"</span>
+        <div class="quote-author">— Buzz Lightyear</div>
+      </div>
 
-      <div class="padrinos-text">🤠 Padres y padrinos: Litzi Cruz y Edgar Reyes 🤠</div>
+      <div class="rope-divider"></div>
 
+      <div class="side-block">
+        <img src="buzz.png" alt="Buzz Lightyear" class="side-char side-char-left" onerror="this.style.display='none'">
+        <div class="side-text">
+          <div class="invite-text">¡Misión Secreta!</div>
+          <p class="side-detail">Los mejores juguetes del cuarto de Andy te invitan a una celebración muy especial: el primer año y bautizo de nuestra pequeña vaquera favorita.</p>
+        </div>
+      </div>
+
+      <div class="rope-divider"></div>
+
+      <div class="padrinos-text">
+        <div>🤠 Padres 🤠</div>
+        <div>Litzi Cruz y Edgar Reyes</div>
+      </div>
       <div class="events-container">
-
         <div class="event-card">
           <div class="event-title">🕊️ Bautizo</div>
           <div class="event-date">📅 11 de Julio</div>
           <div class="event-time">⏰ 11:00 PM</div>
           <div class="event-place">
-            <a class="card-btn" href="#" target="_blank">📍 Ver ubicación</a>
+            <a class="card-btn" target="_blank" href="https://maps.app.goo.gl/tP4gnaDhfqe2AZzo7">📍 Ubicación</a>
           </div>
         </div>
 
@@ -957,30 +958,46 @@
           <div class="event-date">📅 18 de Julio</div>
           <div class="event-time">⏰ 3:00 PM</div>
           <div class="event-place">
-            <a class="card-btn" target="_blank" href="https://maps.google.com/?q=23.9938140,-104.7156984">📍 Ver ubicación</a>
+            <a class="card-btn" target="_blank" href="https://maps.app.goo.gl/HVAzRRRovGArJ5ia6">📍 Ubicación</a>
           </div>
         </div>
-
       </div>
 
-      <div class="personajes-row">
-        <img src="4.png" alt="Botas" class="estrella-inside" onerror="this.style.display='none'">
-        <img src="1.png" alt="Jessie" class="jessie-img" style="width:180px; height:auto;" onerror="this.style.display='none'">
-        <img src="4.png" alt="Bullseye" class="bullseye-img" onerror="this.style.display='none'">
+      <div class="rope-divider"></div>
+
+      <div class="side-block">
+        <div class="side-text">
+          <div class="section-label">👗 Dress Code</div>
+          <p class="side-detail">¡Ven disfrazado de tu personaje favorito de Toy Story para entrar al espíritu vaquero! 🤠🎂</p>
+        </div>
+        <img src="jessie.png" alt="Jessie" class="side-char side-char-right" onerror="this.style.display='none'">
       </div>
-      <div style="text-align:center; margin: 4px 0 8px;">
+
+      <div class="rope-divider"></div>
+
+      <div class="side-block">
+        <img src="goody.png" alt="Goody" class="side-char side-char-left" onerror="this.style.display='none'">
+        <div class="side-text">
+          <div class="section-label">🎁 Mesa de regalos</div>
+          <p class="side-detail">Tu presencia es el mejor regalo. Pero si deseas traer algo, con mucho amor quedará guardado en el baúl de Annia. 🧸</p>
+        </div>
+      </div>
+
+      <div class="rope-divider"></div>
+
+      <div class="confirm-note">
+        <span>✅</span> Por favor confirma tu asistencia antes del <strong>5 de Julio</strong>
+      </div>
+
+      <div style="text-align:center; margin: 10px 0 8px;">
         <a class="confirm-btn" id="confirmBtn" target="_blank" href="https://wa.me/526181130661?text=Confirmo%20mi%20asistencia%20al%20evento">Confirmar Asistencia 🎉</a>
       </div>
 
+      <div class="closing-text">¡Te esperamos con los brazos abiertos, amigo vaquero! 🤠⭐</div>
     </div>
-
-
-
   </div>
-
 </div>
 
-<!-- Audio oculto -->
 <audio id="bgMusic" loop>
   <source src="a.mp3" type="audio/mpeg">
 </audio>
@@ -1041,83 +1058,71 @@
   }
 
   // ---- Abrir invitación ----
-function openInvitation() {
+  function openInvitation() {
+    const audio = document.getElementById('bgMusic');
+    audio.play().catch(() => {});
 
-  const audio = document.getElementById('bgMusic');
-  audio.play().catch(() => {});
-
-  const splash = document.getElementById('splash');
-
-  splash.classList.add('hidden');
-
-  setTimeout(() => {
-
-    splash.style.display = 'none';
-
-    const transition =
-      document.getElementById('bullseye-transition');
-
-    transition.style.display = 'flex';
-    spawnParticles();
-
-    const bullseye =
-      document.getElementById('running-bullseye');
-      const messages = [
-  "Buscando a Woody...",
-  "Encontrando a Jessie...",
-  "Reuniendo a los juguetes...",
-  "Preparando el pastel...",
-  "¡Todo listo para Annia!"
-];
-
-    const loadingText = document.getElementById('loading-text');
-    let msgIndex = 0;
-    loadingText.textContent = messages[0];
-    const msgInterval = setInterval(() => {
-      msgIndex++;
-      if (msgIndex < messages.length) {
-        loadingText.style.opacity = '0';
-        setTimeout(() => {
-          loadingText.textContent = messages[msgIndex];
-          loadingText.style.opacity = '1';
-        }, 200);
-      } else {
-        clearInterval(msgInterval);
-      }
-    }, 1000);
-
-    loadingText.style.transition = 'opacity 0.2s ease';
-
-
-    bullseye.animate(
-      [
-        { left: '-220px' },
-        { left: '110%' }
-      ],
-      {
-        duration: 4500,
-        easing: 'linear',
-        fill: 'forwards'
-      }
-    );
+    const splash = document.getElementById('splash');
+    splash.classList.add('hidden');
 
     setTimeout(() => {
+      splash.style.display = 'none';
 
-      transition.style.display = 'none';
-
-      const inv =
-        document.getElementById('invitation');
-
-      inv.classList.add('visible');
-
-      spawnConfetti();
+      const transition = document.getElementById('bullseye-transition');
+      transition.style.display = 'flex';
       spawnParticles();
 
-    }, 5000);
+      const bullseye = document.getElementById('running-bullseye');
+      const messages = [
+        "Buscando a Woody...",
+        "Encontrando a Jessie...",
+        "Reuniendo a los juguetes...",
+        "Preparando el pastel...",
+        "¡Todo listo para Annia!"
+      ];
 
-  }, 700);
+      const loadingText = document.getElementById('loading-text');
+      let msgIndex = 0;
+      loadingText.textContent = messages[0];
+      const msgInterval = setInterval(() => {
+        msgIndex++;
+        if (msgIndex < messages.length) {
+          loadingText.style.opacity = '0';
+          setTimeout(() => {
+            loadingText.textContent = messages[msgIndex];
+            loadingText.style.opacity = '1';
+          }, 200);
+        } else {
+          clearInterval(msgInterval);
+        }
+      }, 1000);
 
-}
+      loadingText.style.transition = 'opacity 0.2s ease';
+
+      bullseye.animate(
+        [
+          { left: '-220px' },
+          { left: '110%' }
+        ],
+        {
+          duration: 4500,
+          easing: 'linear',
+          fill: 'forwards'
+        }
+      );
+
+      setTimeout(() => {
+        transition.style.display = 'none';
+
+        const inv = document.getElementById('invitation');
+        inv.classList.add('visible');
+
+        spawnConfetti();
+        spawnParticles();
+      }, 5000);
+
+    }, 700);
+  }
 
   // ---- Chispitas al confirmar ----
   document.addEventListener('DOMContentLoaded', () => {
