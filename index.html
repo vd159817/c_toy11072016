@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Annia ✨🎂</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Fredoka One', cursive;
+    background: #1a0a00;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* ========== PANTALLA 1: SPLASH ========== */
+  #splash {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, #1e3c72 0%, #0a0a2e 100%);
+    z-index: 100;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  #splash.hidden {
+    opacity: 0;
+    transform: scale(1.1);
+    pointer-events: none;
+  }
+
+  .splash-stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .splash-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d, 2s) ease-in-out infinite var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.8); }
+  }
+
+  .splash-logo {
+    width: 120px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px #FFD700);
+    animation: floatLogo 3s ease-in-out infinite;
+  }
+
+  @keyframes floatLogo {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+
+  .splash-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(18px, 5vw, 28px);
+    color: #FFD700;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255,215,0,0.8), 2px 2px 0 #8B4513;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    animation: pulseText 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseText {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 30px rgba(255,215,0,1), 2px 2px 0 #8B4513; }
+  }
+
+  .splash-sub {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(13px, 3vw, 16px);
+    color: #87CEEB;
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  #btn-invite {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(18px, 4vw, 24px);
+    color: #1a0a00;
+    background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FFD700 100%);
+    border: none;
+    padding: 18px 45px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow:
+      0 0 0 4px #8B4513,
+      0 0 0 7px #FFD700,
+      0 8px 30px rgba(255,140,0,0.7),
+      inset 0 2px 4px rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    animation: btnPulse 2s ease-in-out infinite;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  #btn-invite::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+    animation: shimmerBtn 2.5s linear infinite;
+  }
+
+  @keyframes shimmerBtn {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+
+  @keyframes btnPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 4px #8B4513, 0 0 0 7px #FFD700, 0 12px 40px rgba(255,140,0,0.9), inset 0 2px 4px rgba(255,255,255,0.5); }
+  }
+
+  #btn-invite:hover {
+    transform: scale(1.08) !important;
+    animation: none;
+  }
+
+  #btn-invite:active { transform: scale(0.97) !important; }
+
+  .btn-emoji { font-size: 1.3em; }
+
+  /* ========== PANTALLA 2: INVITACIÓN ========== */
+  #invitation {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #87CEEB 0%, #60B4E8 40%, #87CEEB 100%);
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
+
+  #invitation.visible { display: flex; }
+
+  /* Nubes de fondo */
+  .cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.85;
+    animation: driftCloud var(--dur, 20s) linear infinite var(--delay2, 0s);
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+  }
+  .cloud::before { width: 60%; height: 160%; top: -50%; left: 10%; }
+  .cloud::after  { width: 40%; height: 140%; top: -30%; right: 10%; }
+
+  @keyframes driftCloud {
+    0%   { transform: translateX(-200px); }
+    100% { transform: translateX(110vw); }
+  }
+
+  /* Fondo tablero Andy */
+  .andy-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: repeating-linear-gradient(
+      45deg,
+      #F5C842 0px, #F5C842 40px,
+      #E8B830 40px, #E8B830 80px
+    );
+    opacity: 0.6;
+  }
+
+  /* Guirnaldas */
+  .bunting {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    overflow: visible;
+  }
+
+  .bunting svg { width: 100%; height: 100%; }
+
+  /* Partículas / chispas */
+  .particle {
+    position: absolute;
+    z-index:100;
+    pointer-events: none;
+    animation: particleFly var(--pd, 3s) ease-in-out infinite var(--pdelay, 0s);
+  }
+
+  @keyframes particleFly {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    50%  { transform: translateY(-40px) rotate(180deg) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(0) rotate(360deg) scale(1); opacity: 1; }
+  }
+
+  /* Tarjeta central */
+  .card-wrap {
+    position: relative;
+    z-index: 10;
+    width: min(420px, 92vw);
+    margin: 20px auto;
+  }
+
+  .card {
+    background: linear-gradient(160deg, #ffffff 0%, #f8f3e8 100%);
+    border-radius: 30px;
+    border: 6px solid #C0392B;
+    box-shadow:
+      0 0 0 3px #FFD700,
+      0 0 0 9px #C0392B,
+      0 20px 60px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+    padding: 20px 24px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Esquinas decorativas con herrajes */
+  .card-corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+  }
+  .card-corner.tl { top: 5px; left: 5px; }
+  .card-corner.tr { top: 5px; right: 5px; transform: scaleX(-1); }
+  .card-corner.bl { bottom: 5px; left: 5px; transform: scaleY(-1); }
+  .card-corner.br { bottom: 5px; right: 5px; transform: scale(-1); }
+
+  /* Encabezado */
+  .label-vaquerita {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(14px, 3.5vw, 18px);
+    color: #2980B9;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .name-emma {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(68px, 18vw, 90px);
+    line-height: 1;
+    color: #FFD700;
+    -webkit-text-stroke: 4px #2471A3;
+    text-shadow:
+      4px 4px 0 #1A5276,
+      0 0 30px rgba(255,215,0,0.6);
+    letter-spacing: -2px;
+    animation: nameWobble 3s ease-in-out infinite;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  @keyframes nameWobble {
+    0%, 100% { transform: rotate(-1deg) scale(1); }
+    50% { transform: rotate(1deg) scale(1.02); }
+  }
+
+  .cumple-banner {
+    background: #C0392B;
+    color: #FFD700;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(20px, 5vw, 28px);
+    padding: 6px 30px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 6px 0;
+    box-shadow: 3px 3px 0 #8B0000, 0 4px 15px rgba(192,57,43,0.5);
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1px #8B0000;
+    animation: bannerShake 4s ease-in-out infinite;
+  }
+
+  @keyframes bannerShake {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    92% { transform: rotate(-1.5deg); }
+    94% { transform: rotate(1.5deg); }
+    96% { transform: rotate(-1deg); }
+    98% { transform: rotate(1deg); }
+  }
+
+  .num-cinco {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(90px, 22vw, 120px);
+    color: #FFD700;
+    -webkit-text-stroke: 4px #2471A3;
+    text-shadow: 5px 5px 0 #1A5276, 0 0 40px rgba(255,215,0,0.8);
+    line-height: 1;
+    display: block;
+    animation: bounce5 1.5s ease-in-out infinite;
+  }
+
+  @keyframes bounce5 {
+    0%, 100% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-10px) scale(1.05); }
+    60% { transform: translateY(-6px) scale(1.03); }
+  }
+
+  /* Imágenes personajes */
+  .jessie-img {
+    width: 150px;
+    filter: drop-shadow(0 0 18px rgba(255,215,0,0.9)) drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
+    animation: jessieWave 3s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+
+  @keyframes jessieWave {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50% { transform: rotate(2deg) translateY(-8px); }
+  }
+
+  .bullseye-img {
+    width: 80px;
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
+    animation: bullseyeBob 2.5s ease-in-out infinite 0.3s;
+  }
+
+  @keyframes bullseyeBob {
+    0%, 100% { transform: translateY(0) rotate(1deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+  }
+
+  /* Estrellas decorativas (imagen) */
+  .stars-deco {
+    position: absolute;
+    width: 60px;
+    opacity: 0.8;
+    animation: starSpin 4s linear infinite;
+  }
+  .stars-deco.s1 { top: 60px; right: 4px; width: 40px; }
+  .stars-deco.s2 { top: 200px; left: 4px; width: 36px; animation-direction: reverse; }
+
+  @keyframes starSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  /* Herrajes (locks) */
+  .locks-deco {
+    position: absolute;
+    width: 45px;
+    opacity: 0.7;
+    animation: lockFloat 3s ease-in-out infinite;
+  }
+  .locks-deco.l1 { top: 130px; right: 4px; }
+  .locks-deco.l2 { top: 290px; left: 4px; animation-delay: 1s; }
+
+  @keyframes lockFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+  }
+
+  /* Divisor de cuerda */
+  .rope-divider {
+    width: 90%;
+    height: 16px;
+    margin: 14px auto;
+    background:
+      repeating-linear-gradient(90deg,
+        #8B4513 0px, #A0522D 8px,
+        #6B3410 8px, #8B4513 16px
+      );
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  .rope-divider::before, .rope-divider::after {
+    content: '●';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFD700;
+    font-size: 14px;
+    text-shadow: 0 0 5px #FF8C00;
+  }
+  .rope-divider::before { left: -8px; }
+  .rope-divider::after  { right: -8px; }
+
+  /* Texto invitación */
+  .invite-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(16px, 4vw, 20px);
+    color: #2471A3;
+    margin: 8px 0 4px;
+    line-height: 1.3;
+  }
+
+  .day-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(13px, 3vw, 16px);
+    color: #C0392B;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  .date-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(56px, 14vw, 72px);
+    color: #FFD700;
+    -webkit-text-stroke: 3px #2471A3;
+    text-shadow: 3px 3px 0 #1A5276;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .month-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(20px, 5vw, 26px);
+    color: #1A5276;
+    -webkit-text-stroke: 0.5px #2471A3;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: -4px;
+    margin-bottom: 4px;
+  }
+
+  .venue-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(15px, 3.5vw, 18px);
+    color: #2471A3;
+    margin-top: 10px;
+  }
+
+  .venue-name {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(24px, 6vw, 32px);
+    color: #C0392B;
+    -webkit-text-stroke: 1px #8B0000;
+    text-shadow: 2px 2px 0 #8B0000;
+    display: block;
+    line-height: 1.1;
+    animation: venuePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes venuePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  .time-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(26px, 6.5vw, 34px);
+    color: #1A5276;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    margin-top: 6px;
+  }
+
+  /* Chispas / sparkles flotantes sobre la tarjeta */
+  .sparkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  .sparkle svg {
+    animation: sparkleTwirl var(--sd, 2s) ease-in-out infinite var(--sdelay, 0s);
+  }
+
+  @keyframes sparkleTwirl {
+    0%   { transform: rotate(0deg) scale(0.5); opacity: 0; }
+    30%  { opacity: 1; transform: rotate(90deg) scale(1.2); }
+    60%  { opacity: 0.7; transform: rotate(200deg) scale(0.9); }
+    100% { transform: rotate(360deg) scale(0.5); opacity: 0; }
+  }
+
+  /* Brillo barrido sobre la tarjeta */
+  .card-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+    animation: cardShine 3s linear infinite;
+    pointer-events: none;
+    z-index: 25;
+  }
+
+  @keyframes cardShine {
+    0%   { transform: translateX(-120%); }
+    100% { transform: translateX(120%); }
+  }
+
+  /* Confetti global */
+  .confetti-piece {
+    position: fixed;
+    width: var(--cw, 10px);
+    height: var(--ch, 10px);
+    background: var(--cc, #FFD700);
+    border-radius: var(--cr, 2px);
+    top: -20px;
+    left: var(--cl, 50%);
+    animation: confettiFall var(--cd, 4s) ease-in var(--cdelay, 0s) infinite;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  @keyframes confettiFall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0.3; }
+  }
+
+  /* Responsivo */
+  @media (max-width: 500px) {
+    .jessie-img  { width: 130px; left: -40px; }
+    .bullseye-img { width: 110px; right: -40px; }
+  }
+  #bullseye-transition{
+  position:fixed;
+  inset:0;
+  background:#87CEEB;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  z-index:9999;
+}
+
+#running-bullseye{
+  position:absolute;
+  width:180px;
+  left:-220px;
+  bottom:120px;
+}
+
+#loading-text{
+  position:absolute;
+  bottom:50px;
+  font-size:24px;
+  font-weight:bold;
+  color:white;
+  text-shadow:2px 2px 4px rgba(0,0,0,.4);
+}
+
+#dust-cloud{
+  position:absolute;
+  width:50px;
+  height:50px;
+  background:#E8D3A9;
+  border-radius:50%;
+  opacity:0;
+}
+.transition-cloud{
+  position:absolute;
+  background:white;
+  border-radius:50px;
+  opacity:.9;
+}
+
+.c1{
+  width:180px;
+  height:60px;
+  top:15%;
+  left:5%;
+  animation: cloudFloat 2s ease-in-out infinite;
+}
+
+.c2{
+  width:120px;
+  height:40px;
+  top:30%;
+  left:70%;
+  animation: cloudFloat 5s ease-in-out infinite;
+}
+
+.c3{
+  width:220px;
+  height:70px;
+  top:55%;
+  left:15%;
+  animation: cloudFloat 6s ease-in-out infinite;
+}
+
+.c4{
+  width:140px;
+  height:45px;
+  top:75%;
+  left:65%;
+  animation: cloudFloat 7s ease-in-out infinite;
+}
+
+
+@keyframes cloudFloat {
+
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  25% {
+    transform: translate(10px, -8px);
+  }
+
+  50% {
+    transform: translate(20px, 0px);
+  }
+
+  75% {
+    transform: translate(10px, 8px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+
+}
+  /* Eventos en dos columnas */
+  .events-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0 10px;
+    text-align: left;
+  }
+
+  .event-card {
+    background: linear-gradient(135deg, #fff8e7 0%, #fff3d6 100%);
+    border: 3px solid #C0392B;
+    border-radius: 16px;
+    padding: 12px 10px;
+    box-shadow: 0 4px 12px rgba(192,57,43,0.2), 3px 3px 0 #FFD700;
+  }
+
+  .event-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(15px, 4vw, 20px);
+    color: #C0392B;
+    margin-bottom: 6px;
+    border-bottom: 2px dashed #FFD700;
+    padding-bottom: 4px;
+  }
+
+  .event-date, .event-time, .event-place {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(11px, 2.8vw, 14px);
+    color: #2471A3;
+    margin: 4px 0;
+  }
+
+  .event-place a, .event-place .card-btn {
+    font-size: clamp(10px, 2.5vw, 13px);
+    padding: 6px 10px;
+  }
+
+  /* Padrinos */
+  .padrinos-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(13px, 3.2vw, 16px);
+    color: #8B4513;
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px dashed #FFD700;
+    border-radius: 12px;
+    padding: 8px 14px;
+    margin: 10px 0 4px;
+  }
+
+  /* Fila de logos abajo */
+  .logos-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 14px auto 0;
+    width: 100%;
+  }
+
+  .logo-bottom {
+    width: min(70px, 18vw);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    animation: logoGlow 2s ease-in-out infinite;
+  }
+
+  /* Logo Toy Story (imagen) */
+  .toystory-logo {
+    width: min(160px, 40vw);
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    animation: logoGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes logoGlow {
+    0%, 100% { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); }
+    50% { filter: drop-shadow(0 4px 20px rgba(255,215,0,0.8)) drop-shadow(0 0 30px rgba(255,140,0,0.6)); }
+  }
+  .estrella-inside {
+    width: 60px;
+    filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.3));
+    animation: lockFloat 3s ease-in-out infinite;
+    align-self: flex-end;
+    flex-shrink: 0;
+  }
+
+  .personajes-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .personajes-row .jessie-img {
+    width: 150px;
+    flex-shrink: 0;
+  }
+
+  .personajes-row .bullseye-img {
+    width: 65px;
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+
+  .card-btn {
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: #C0392B;
+    color: white;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(11px, 2.5vw, 13px);
+    display: inline-block;
+    margin-top: 6px;
+    box-shadow: 2px 2px 0 #8B0000;
+  }
+
+  .card-btn.secondary {
+    background: #FFD700;
+    color: #3a2f00;
+    box-shadow: 2px 2px 0 #B8860B;
+  }
+
+  /* Botón confirmar especial */
+  .confirm-btn {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(16px, 4vw, 20px);
+    color: #3a2f00;
+    background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FFD700 100%);
+    padding: 14px 32px;
+    border-radius: 50px;
+    margin-top: 10px;
+    box-shadow:
+      0 0 0 3px #8B4513,
+      0 0 0 6px #FFD700,
+      0 6px 20px rgba(255,140,0,0.6),
+      inset 0 2px 3px rgba(255,255,255,0.5);
+    animation: confirmPulse 2s ease-in-out infinite;
+    overflow: hidden;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+
+  .confirm-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+    animation: shimmerConfirm 2s linear infinite;
+  }
+
+  @keyframes shimmerConfirm {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+
+  @keyframes confirmPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 3px #8B4513, 0 0 0 6px #FFD700, 0 6px 20px rgba(255,140,0,0.6), inset 0 2px 3px rgba(255,255,255,0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 3px #8B4513, 0 0 0 6px #FFD700, 0 10px 30px rgba(255,140,0,0.9), inset 0 2px 3px rgba(255,255,255,0.5); }
+  }
+
+  /* Chispitas al presionar */
+  .spark {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: sparkFly var(--sf-dur, 0.7s) ease-out forwards;
+  }
+
+  @keyframes sparkFly {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--sf-x, 0px), var(--sf-y, -60px)) scale(0); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== PANTALLA 1: SPLASH ====== -->
+<div id="splash">
+  <div class="splash-stars" id="splashStars"></div>
+
+  <!-- Toy Story logo como imagen -->
+  <img src="5.png" alt="Toy Story" class="splash-logo" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block'">
+  <div id="fallbackLogo" style="display:none; font-family:'Fredoka One',cursive; font-size:36px; color:#FFD700; text-shadow:3px 3px 0 #8B4513; margin-bottom:20px;">TOY STORY</div>
+
+  <div class="splash-text">¡Tienes una misión secreta!</div>
+  <div class="splash-sub">Toca el botón para recibir tu invitación 🤫</div>
+
+  <button id="btn-invite" onclick="openInvitation()">
+    <span class="btn-emoji">🎉</span> ¡Has sido invitado! <span class="btn-emoji">🎉</span>
+  </button>
+</div>
+
+<!-- ====== PANTALLA 3: Transicion ====== -->
+
+<div id="bullseye-transition">
+
+  <div class="transition-cloud c1"></div>
+  <div class="transition-cloud c2"></div>
+  <div class="transition-cloud c3"></div>
+  <div class="transition-cloud c4"></div>
+
+  <img src="2.png" alt="Bullseye" id="running-bullseye">
+
+  <div id="loading-text">
+    Buscando a Woody...
+  </div>
+
+</div>
+
+<!-- ====== PANTALLA 2: INVITACIÓN ====== -->
+<div id="invitation">
+
+  <div class="cloud" style="width:120px;height:35px;top:5%;--dur:25s;--delay2:-5s;"></div>
+  <div class="cloud" style="width:90px;height:28px;top:12%;--dur:20s;--delay2:-12s;"></div>
+  <div class="cloud" style="width:150px;height:45px;top:8%;--dur:30s;--delay2:-8s;"></div>
+  <div class="cloud" style="width:80px;height:25px;top:18%;--dur:22s;--delay2:-3s;"></div>
+
+  <div class="bunting" style="position:absolute;top:0;left:0;right:0;z-index:999;">
+    <svg viewBox="0 0 800 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,10 Q100,40 200,10 Q300,40 400,10 Q500,40 600,10 Q700,40 800,10" fill="none" stroke="#8B4513" stroke-width="2"/>
+      <polygon points="80,10 100,50 120,10" fill="#C0392B"/>
+      <polygon points="160,14 180,54 200,14" fill="#FFD700"/>
+      <polygon points="240,10 260,50 280,10" fill="#C0392B"/>
+      <polygon points="320,14 340,54 360,14" fill="#FFD700"/>
+      <polygon points="400,10 420,50 440,10" fill="#C0392B"/>
+      <polygon points="480,14 500,54 520,14" fill="#FFD700"/>
+      <polygon points="560,10 580,50 600,10" fill="#C0392B"/>
+      <polygon points="640,14 660,54 680,14" fill="#FFD700"/>
+    </svg>
+  </div>
+
+  <div class="andy-floor"></div>
+
+  <div class="card-wrap">
+
+    <div class="sparkle" style="top:10px;right:30px;--sd:2.5s;--sdelay:0s;">
+      <svg width="22" height="22" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#FFD700"/></svg>
+    </div>
+
+    <div class="sparkle" style="top:40px;left:20px;--sd:1.8s;--sdelay:0.5s;">
+      <svg width="16" height="16" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#87CEEB"/></svg>
+    </div>
+
+    <div class="sparkle" style="bottom:80px;right:20px;--sd:2s;--sdelay:1s;">
+      <svg width="14" height="14" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#FF6B6B"/></svg>
+    </div>
+
+    <div class="sparkle" style="bottom:120px;left:25px;--sd:3s;--sdelay:0.3s;">
+      <svg width="18" height="18" viewBox="0 0 22 22"><path d="M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z" fill="#FFD700"/></svg>
+    </div>
+
+    <div class="card" style="width:90%; margin:0 auto;">
+      <div class="card-shine"></div>
+
+      <svg class="card-corner tl" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
+      <svg class="card-corner tr" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
+      <svg class="card-corner bl" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
+      <svg class="card-corner br" viewBox="0 0 50 50"><path d="M5,45 L5,10 Q5,5 10,5 L45,5" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/><circle cx="5" cy="45" r="4" fill="#FFD700"/><circle cx="45" cy="5" r="4" fill="#FFD700"/></svg>
+
+      <div class="label-vaquerita">¡CELEBRACIÓN ESPECIAL!</div>
+
+      <span class="name-emma"> Annia Lía </span>
+
+      <div class="cumple-banner">Cumple</div>
+
+      <span class="num-cinco">1</span>
+
+      <div class="invite-text" style="margin: 10px 0 4px;">¡Acompáñanos a celebrar este día tan especial!</div>
+
+      <div class="padrinos-text">🤠 Padres y padrinos: Litzi Cruz y Edgar Reyes 🤠</div>
+
+      <div class="events-container">
+
+        <div class="event-card">
+          <div class="event-title">🕊️ Bautizo</div>
+          <div class="event-date">📅 11 de Julio</div>
+          <div class="event-time">⏰ 11:00 PM</div>
+          <div class="event-place">
+            <a class="card-btn" href="#" target="_blank">📍 Ver ubicación</a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-title">🎉 Fiesta</div>
+          <div class="event-date">📅 18 de Julio</div>
+          <div class="event-time">⏰ 3:00 PM</div>
+          <div class="event-place">
+            <a class="card-btn" target="_blank" href="https://maps.google.com/?q=23.9938140,-104.7156984">📍 Ver ubicación</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="personajes-row">
+        <img src="4.png" alt="Botas" class="estrella-inside" onerror="this.style.display='none'">
+        <img src="1.png" alt="Jessie" class="jessie-img" style="width:180px; height:auto;" onerror="this.style.display='none'">
+        <img src="4.png" alt="Bullseye" class="bullseye-img" onerror="this.style.display='none'">
+      </div>
+      <div style="text-align:center; margin: 4px 0 8px;">
+        <a class="confirm-btn" id="confirmBtn" target="_blank" href="https://wa.me/526181130661?text=Confirmo%20mi%20asistencia%20al%20evento">Confirmar Asistencia 🎉</a>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+<!-- Audio oculto -->
+<audio id="bgMusic" loop>
+  <source src="a.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // ---- Generar estrellas en splash ----
+  const splashStars = document.getElementById('splashStars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'splash-star';
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;--d:${Math.random()*2+1}s;--delay:${Math.random()*3}s;`;
+    splashStars.appendChild(s);
+  }
+
+  // ---- Generar confetti ----
+  const colors = ['#FFD700','#C0392B','#2471A3','#27AE60','#E74C3C','#F39C12','#8E44AD','#1ABC9C'];
+  const shapes = ['2px','50%','0'];
+  const confettiContainer = document.body;
+
+  function spawnConfetti() {
+    for (let i = 0; i < 25; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      const size = Math.random() * 12 + 6;
+      c.style.cssText = `
+        --cw:${size}px;
+        --ch:${size * (Math.random() > 0.5 ? 0.5 : 1)}px;
+        --cc:${colors[Math.floor(Math.random()*colors.length)]};
+        --cr:${shapes[Math.floor(Math.random()*shapes.length)]};
+        --cl:${Math.random()*100}%;
+        --cd:${Math.random()*3+3}s;
+        --cdelay:${Math.random()*5}s;
+      `;
+      confettiContainer.appendChild(c);
+    }
+  }
+
+  // ---- Generar partículas en invitación ----
+  function spawnParticles() {
+    const inv = document.getElementById('bullseye-transition');
+    const pColors = ['#FFD700','#FF6B6B','#87CEEB','#98FB98','#DDA0DD','#FF8C00'];
+    for (let i = 0; i < 35; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 20 + 15;
+      const pEl = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      pEl.setAttribute('width', size);
+      pEl.setAttribute('height', size);
+      pEl.setAttribute('viewBox','0 0 22 22');
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M11 0 L12.5 9.5 L22 11 L12.5 12.5 L11 22 L9.5 12.5 L0 11 L9.5 9.5 Z');
+      path.setAttribute('fill', pColors[Math.floor(Math.random()*pColors.length)]);
+      pEl.appendChild(path);
+      p.appendChild(pEl);
+      p.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*85+5}%;--pd:${Math.random()*2+2}s;--pdelay:${Math.random()*3}s;`;
+      inv.appendChild(p);
+    }
+  }
+
+  // ---- Abrir invitación ----
+function openInvitation() {
+
+  const audio = document.getElementById('bgMusic');
+  audio.play().catch(() => {});
+
+  const splash = document.getElementById('splash');
+
+  splash.classList.add('hidden');
+
+  setTimeout(() => {
+
+    splash.style.display = 'none';
+
+    const transition =
+      document.getElementById('bullseye-transition');
+
+    transition.style.display = 'flex';
+    spawnParticles();
+
+    const bullseye =
+      document.getElementById('running-bullseye');
+      const messages = [
+  "Buscando a Woody...",
+  "Encontrando a Jessie...",
+  "Reuniendo a los juguetes...",
+  "Preparando el pastel...",
+  "¡Todo listo para Annia!"
+];
+
+    const loadingText = document.getElementById('loading-text');
+    let msgIndex = 0;
+    loadingText.textContent = messages[0];
+    const msgInterval = setInterval(() => {
+      msgIndex++;
+      if (msgIndex < messages.length) {
+        loadingText.style.opacity = '0';
+        setTimeout(() => {
+          loadingText.textContent = messages[msgIndex];
+          loadingText.style.opacity = '1';
+        }, 200);
+      } else {
+        clearInterval(msgInterval);
+      }
+    }, 1000);
+
+    loadingText.style.transition = 'opacity 0.2s ease';
+
+
+    bullseye.animate(
+      [
+        { left: '-220px' },
+        { left: '110%' }
+      ],
+      {
+        duration: 4500,
+        easing: 'linear',
+        fill: 'forwards'
+      }
+    );
+
+    setTimeout(() => {
+
+      transition.style.display = 'none';
+
+      const inv =
+        document.getElementById('invitation');
+
+      inv.classList.add('visible');
+
+      spawnConfetti();
+      spawnParticles();
+
+    }, 5000);
+
+  }, 700);
+
+}
+
+  // ---- Chispitas al confirmar ----
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('confirmBtn');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      const sparkColors = ['#FFD700','#FF8C00','#FF6B6B','#87CEEB','#98FB98','#DDA0DD','#fff'];
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      for (let i = 0; i < 28; i++) {
+        const s = document.createElement('div');
+        s.className = 'spark';
+        const angle = (Math.PI * 2 * i) / 28 + Math.random() * 0.3;
+        const dist = 40 + Math.random() * 60;
+        const sx = Math.cos(angle) * dist;
+        const sy = Math.sin(angle) * dist - 20;
+        const dur = 0.5 + Math.random() * 0.4;
+        const size = 6 + Math.random() * 8;
+        s.style.cssText = `
+          left:${cx}px; top:${cy}px;
+          width:${size}px; height:${size}px;
+          background:${sparkColors[Math.floor(Math.random()*sparkColors.length)]};
+          --sf-x:${sx}px; --sf-y:${sy}px; --sf-dur:${dur}s;
+        `;
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), dur * 1000 + 100);
+      }
+    });
+  });
+</script>
+</body>
+</html>
